@@ -31,24 +31,22 @@ app.use(
   session({
     name: "session",
     keys: [config.SESSION_SECRET],
-    maxAge: 24 * 60 * 60 * 1000, // 1 ngày
-    secure: config.NODE_ENV === "development", // true khi deploy
+    maxAge: 24 * 60 * 60 * 1000,
+    secure: config.NODE_ENV === "production",
     httpOnly: true,
-    sameSite: "none", // để chấp nhận từ domain khác
+    sameSite: "none",
   })
 );
-
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(
   cors({
-    origin: config.FRONTEND_ORIGIN, // vd: 'https://your-frontend.vercel.app'
-    credentials: true,              // cho phép gửi cookie cross-origin
+    origin: config.FRONTEND_ORIGIN,
+    credentials: true,
   })
 );
-
 
 app.get(
   `/`,
