@@ -32,7 +32,7 @@ app.use(
     name: "session",
     keys: [config.SESSION_SECRET],
     maxAge: 24 * 60 * 60 * 1000, // 1 ngày
-    secure: config.NODE_ENV === "production", // true khi deploy
+    secure: config.NODE_ENV === "development", // true khi deploy
     httpOnly: true,
     sameSite: "none", // để chấp nhận từ domain khác
   })
