@@ -33,6 +33,7 @@ app.use(
     credentials: true,
   })
 );
+app.set('trust proxy', 1); // Đảm bảo Express biết đang chạy sau proxy
 
 app.use(
   session({
