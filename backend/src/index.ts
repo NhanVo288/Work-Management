@@ -39,11 +39,12 @@ app.use(
     name: "session",
     keys: [config.SESSION_SECRET],
     maxAge: 24 * 60 * 60 * 1000,
-    secure: true, // BẮT BUỘC với production cross-origin
+    secure: config.NODE_ENV === "production", // BẮT BUỘC
     httpOnly: true,
-    sameSite: "none", // BẮT BUỘC để cookie gửi được từ Vercel
+    sameSite: config.NODE_ENV === "production" ? "none" : "lax", // BẮT BUỘC
   })
 );
+
 
 
 
