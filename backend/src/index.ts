@@ -33,16 +33,18 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(
   session({
     name: "session",
     keys: [config.SESSION_SECRET],
     maxAge: 24 * 60 * 60 * 1000,
-    secure: config.NODE_ENV === "development", 
+    secure: true, // BẮT BUỘC với production cross-origin
     httpOnly: true,
-    sameSite: "lax", 
+    sameSite: "none", // BẮT BUỘC để cookie gửi được từ Vercel
   })
 );
+
 
 
 app.use(passport.initialize());
@@ -72,6 +74,10 @@ app.use(`${BASE_PATH}/task`, isAuthenticated, taskRoutes);
 app.use(errorHandler);
 
 app.listen(config.PORT, async () => {
-  console.log(`Server listening on port ${config.PORT} in ${config.NODE_ENV}`);
+  console.log(`Server listening on port ${config.PORT}`);
+  console.log(`NODE_ENV: ${config.NODE_ENV}`);
+  console.log(`FRONTEND_ORIGIN: ${config.FRONTEND_ORIGIN}`);
+  console.log(`GOOGLE_CALLBACK_URL: ${config.GOOGLE_CALLBACK_URL}`);
   await connectDatabase();
 });
+
