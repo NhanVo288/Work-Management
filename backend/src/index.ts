@@ -41,7 +41,7 @@ app.use(
     keys: [config.SESSION_SECRET],
     maxAge: 24 * 60 * 60 * 1000,
     secure: config.NODE_ENV === "production", // chỉ bật secure khi production
-    httpOnly: true,
+    httpOnly: false,
     sameSite: config.NODE_ENV === "production" ? "none" : "lax",
   })
 );
