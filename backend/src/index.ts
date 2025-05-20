@@ -79,6 +79,7 @@ app.listen(config.PORT, async () => {
   console.log(`Server listening on port ${config.PORT}`);
   console.log(`NODE_ENV: ${config.NODE_ENV}`);
   console.log(`FRONTEND_ORIGIN: ${config.FRONTEND_ORIGIN}`);
+  console.log(`FRONTEND_GOOGLE_CALLBACK_URL: ${config.FRONTEND_GOOGLE_CALLBACK_URL}`);
   console.log(`GOOGLE_CALLBACK_URL: ${config.GOOGLE_CALLBACK_URL}`);
   await connectDatabase();
 });
